@@ -16,14 +16,14 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/Mrs4s/MiraiGo/binary"
-	"github.com/Mrs4s/MiraiGo/binary/jce"
-	"github.com/Mrs4s/MiraiGo/client/internal/auth"
-	"github.com/Mrs4s/MiraiGo/client/pb/msg"
-	"github.com/Mrs4s/MiraiGo/client/pb/oidb"
-	"github.com/Mrs4s/MiraiGo/internal/proto"
-	"github.com/Mrs4s/MiraiGo/message"
-	"github.com/Mrs4s/MiraiGo/utils"
+	"github.com/hwmoe/MiraiGo/binary"
+	"github.com/hwmoe/MiraiGo/binary/jce"
+	"github.com/hwmoe/MiraiGo/client/internal/auth"
+	"github.com/hwmoe/MiraiGo/client/pb/msg"
+	"github.com/hwmoe/MiraiGo/client/pb/oidb"
+	"github.com/hwmoe/MiraiGo/internal/proto"
+	"github.com/hwmoe/MiraiGo/message"
+	"github.com/hwmoe/MiraiGo/utils"
 )
 
 type (

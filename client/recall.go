@@ -3,10 +3,10 @@ package client
 import (
 	"github.com/pkg/errors"
 
-	"github.com/Mrs4s/MiraiGo/client/internal/network"
-	"github.com/Mrs4s/MiraiGo/client/pb/msg"
-	"github.com/Mrs4s/MiraiGo/internal/proto"
-	"github.com/Mrs4s/MiraiGo/message"
+	"github.com/hwmoe/MiraiGo/client/internal/network"
+	"github.com/hwmoe/MiraiGo/client/pb/msg"
+	"github.com/hwmoe/MiraiGo/internal/proto"
+	"github.com/hwmoe/MiraiGo/message"
 )
 
 // 撤回相关处理逻辑

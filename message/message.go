@@ -7,10 +7,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Mrs4s/MiraiGo/binary"
-	"github.com/Mrs4s/MiraiGo/client/pb/msg"
-	"github.com/Mrs4s/MiraiGo/internal/proto"
-	"github.com/Mrs4s/MiraiGo/utils"
+	"github.com/hwmoe/MiraiGo/binary"
+	"github.com/hwmoe/MiraiGo/client/pb/msg"
+	"github.com/hwmoe/MiraiGo/internal/proto"
+	"github.com/hwmoe/MiraiGo/utils"
 )
 
 type IMessage interface {

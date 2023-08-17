@@ -4,14 +4,14 @@ qq-android 协议的golang实现 移植于 [mirai](https://github.com/mamoe/mira
 ## 使用前声明
 本项目为协议实现，不推荐直接使用。
 
-CQHTTP 用户建议使用基于 [go-cqhttp](https://github.com/Mrs4s/go-cqhttp) 的框架开发。
+CQHTTP 用户建议使用基于 [go-cqhttp](https://github.com/hwmoe/go-cqhttp) 的框架开发。
 
 同时也提供原生框架 [MiraiGo-Template](https://github.com/Logiase/MiraiGo-Template) 进行开发。
 
 ## 使用方法
 
 ```bash
-go get -u github.com/Mrs4s/MiraiGo
+go get -u github.com/hwmoe/MiraiGo
 ```
 
 ## 支持的功能

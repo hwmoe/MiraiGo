@@ -5,9 +5,9 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/Mrs4s/MiraiGo/client/internal/network"
-	"github.com/Mrs4s/MiraiGo/client/pb/faceroam"
-	"github.com/Mrs4s/MiraiGo/internal/proto"
+	"github.com/hwmoe/MiraiGo/client/internal/network"
+	"github.com/hwmoe/MiraiGo/client/pb/faceroam"
+	"github.com/hwmoe/MiraiGo/internal/proto"
 )
 
 type CustomFace struct {
