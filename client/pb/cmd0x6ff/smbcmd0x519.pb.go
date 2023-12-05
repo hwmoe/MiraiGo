@@ -21,6 +21,11 @@ type C519CRMMsgHead struct {
 	LaborUin   proto.Option[uint64] `protobuf:"varint,11,opt"`
 	LaborName  proto.Option[string] `protobuf:"bytes,12,opt"`
 	Puin       proto.Option[uint64] `protobuf:"varint,13,opt"`
+	Kfaccount  proto.Option[uint64] `protobuf:"varint,14,opt"`
+	TraceId    proto.Option[string] `protobuf:"bytes,15,opt"`
+	ClientMode proto.Option[uint32] `protobuf:"varint,16,opt"`
+	Bqq        proto.Option[uint64] `protobuf:"varint,17,opt"`
+	I18nLang   proto.Option[string] `protobuf:"bytes,18,opt"`
 	_          [0]func()
 }
 

@@ -107,7 +107,7 @@ var (
 			ApkId:           "com.tencent.qidian",
 			AppId:           537141089,
 			SubAppId:        537036590,
-			SortVersionName: "5.0.0",
+			SortVersionName: "5.9.10",
 			BuildTime:       1630062176,
 			ApkSign:         []byte{160, 30, 236, 171, 133, 233, 227, 186, 43, 15, 106, 21, 140, 133, 92, 41},
 			SdkVersion:      "6.0.0.2484",

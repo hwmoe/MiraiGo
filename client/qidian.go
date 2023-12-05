@@ -35,6 +35,7 @@ func (c *QQClient) getQiDianAddressDetailList() ([]*FriendInfo, error) {
 			LaborUin:  proto.Uint64(uint64(c.Uin)),
 		},
 		GetAddressDetailListReqBody: &cmd0x6ff.GetAddressDetailListReqBody{
+			Timestamp:  proto.Uint32(0),
 			Timestamp2: proto.Uint64(0),
 		},
 	}
