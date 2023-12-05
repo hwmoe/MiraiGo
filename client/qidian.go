@@ -5,10 +5,10 @@ package client
 import (
 	"bytes"
 	"fmt"
-	"io"
-	"net/http"
-
 	"github.com/pkg/errors"
+	"io"
+	"log"
+	"net/http"
 
 	"github.com/hwmoe/MiraiGo/binary"
 	"github.com/hwmoe/MiraiGo/client/internal/network"
@@ -43,6 +43,9 @@ func (c *QQClient) getQiDianAddressDetailList() ([]*FriendInfo, error) {
 		return nil, errors.Wrap(err, "request error")
 	}
 	rsp := &cmd0x6ff.C519RspBody{}
+	hexStr := fmt.Sprintf("%x", rspData)
+	log.Println(hexStr)
+
 	if err = proto.Unmarshal(rspData, rsp); err != nil {
 		return nil, errors.Wrap(err, "unmarshal error")
 	}
