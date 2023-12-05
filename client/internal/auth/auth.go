@@ -105,7 +105,7 @@ var (
 		},
 		QiDian: {
 			ApkId:           "com.tencent.qidian",
-			AppId:           537141089,
+			AppId:           16,
 			SubAppId:        537141089,
 			SortVersionName: "5.9.10",
 			BuildTime:       1642426115,
