@@ -4,6 +4,7 @@ package client
 
 import (
 	"bytes"
+	"encoding/hex"
 	"fmt"
 	"github.com/hwmoe/MiraiGo/binary"
 	"github.com/hwmoe/MiraiGo/client/internal/network"
@@ -30,11 +31,11 @@ func (c *QQClient) getQiDianAddressDetailList() ([]*FriendInfo, error) {
 	req := &cmd0x6ff.C519ReqBody{
 		SubCmd: proto.Uint32(58),
 		CrmCommonHead: &cmd0x6ff.C519CRMMsgHead{
-			KfUin:      proto.Uint64(uint64(c.QiDian.MasterUin)),
-			VerNo:      proto.Uint32(uint32(utils.ConvertSubVersionToInt(c.version().SortVersionName))),
-			CrmSubCmd:  proto.Uint32(58),
-			LaborUin:   proto.Uint64(uint64(c.Uin)),
-			Clienttype: proto.Uint32(2),
+			KfUin:     proto.Uint64(uint64(c.QiDian.MasterUin)),
+			VerNo:     proto.Uint32(uint32(utils.ConvertSubVersionToInt(c.version().SortVersionName))),
+			CrmSubCmd: proto.Uint32(58),
+			LaborUin:  proto.Uint64(uint64(c.Uin)),
+			//Clienttype: proto.Uint32(2),
 		},
 		GetAddressDetailListReqBody: &cmd0x6ff.GetAddressDetailListReqBody{
 			Timestamp:  proto.Uint32(0),
@@ -46,6 +47,8 @@ func (c *QQClient) getQiDianAddressDetailList() ([]*FriendInfo, error) {
 		return nil, errors.Wrap(err, "request error")
 	}
 	rsp := &cmd0x6ff.C519RspBody{}
+	log.Println(hex.EncodeToString(rspData))
+	log.Println(len(rspData))
 	if err = proto.Unmarshal(rspData, rsp); err != nil {
 		return nil, errors.Wrap(err, "unmarshal error")
 	}
