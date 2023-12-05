@@ -29,16 +29,16 @@ func init() {
 // getQiDianAddressDetailList 外部联系人列表
 func (c *QQClient) getQiDianAddressDetailList() ([]*FriendInfo, error) {
 	req := &cmd0x6ff.C519ReqBody{
-		SubCmd: proto.Uint32(58),
+		SubCmd: proto.Uint32(33),
 		CrmCommonHead: &cmd0x6ff.C519CRMMsgHead{
 			KfUin:     proto.Uint64(uint64(c.QiDian.MasterUin)),
 			VerNo:     proto.Uint32(uint32(utils.ConvertSubVersionToInt(c.version().SortVersionName))),
-			CrmSubCmd: proto.Uint32(58),
+			CrmSubCmd: proto.Uint32(33),
 			LaborUin:  proto.Uint64(uint64(c.Uin)),
 			//Clienttype: proto.Uint32(2),
 		},
 		GetAddressDetailListReqBody: &cmd0x6ff.GetAddressDetailListReqBody{
-			Timestamp:  proto.Uint32(0),
+			//Timestamp:  proto.Uint32(0),
 			Timestamp2: proto.Uint64(0),
 		},
 	}
@@ -118,9 +118,6 @@ func (c *QQClient) bigDataRequest(subCmd uint32, req proto.Message) ([]byte, err
 	version := strings.Join(strings.Split(c.version().SortVersionName, "."), "")
 	var versionNum int
 	versionNum, _ = strconv.Atoi(version)
-
-	log.Println(versionNum)
-
 	head, _ := proto.Marshal(&msg.IMHead{
 		HeadType: proto.Uint32(4),
 		HttpconnHead: &msg.HttpConnHead{
