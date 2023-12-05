@@ -42,7 +42,7 @@ func (c *QQClient) getQiDianAddressDetailList() ([]*FriendInfo, error) {
 			Timestamp2: proto.Uint64(0),
 		},
 	}
-	rspData, err := c.bigDataRequest(0x519, req)
+	rspData, err := c.bigDataRequest(58, req)
 	if err != nil {
 		return nil, errors.Wrap(err, "request error")
 	}
@@ -118,6 +118,8 @@ func (c *QQClient) bigDataRequest(subCmd uint32, req proto.Message) ([]byte, err
 	version := strings.Join(strings.Split(c.version().SortVersionName, "."), "")
 	var versionNum int
 	versionNum, _ = strconv.Atoi(version)
+
+	log.Println(versionNum)
 
 	head, _ := proto.Marshal(&msg.IMHead{
 		HeadType: proto.Uint32(4),
