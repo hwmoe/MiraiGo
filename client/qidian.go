@@ -29,11 +29,11 @@ func init() {
 // getQiDianAddressDetailList 外部联系人列表
 func (c *QQClient) getQiDianAddressDetailList() ([]*FriendInfo, error) {
 	req := &cmd0x6ff.C519ReqBody{
-		SubCmd: proto.Uint32(33),
+		SubCmd: proto.Uint32(58),
 		CrmCommonHead: &cmd0x6ff.C519CRMMsgHead{
 			KfUin:      proto.Uint64(uint64(c.QiDian.MasterUin)),
 			VerNo:      proto.Uint32(uint32(utils.ConvertSubVersionToInt(c.version().SortVersionName))),
-			CrmSubCmd:  proto.Uint32(33),
+			CrmSubCmd:  proto.Uint32(58),
 			LaborUin:   proto.Uint64(uint64(c.Uin)),
 			Clienttype: proto.Uint32(2),
 		},
@@ -42,7 +42,7 @@ func (c *QQClient) getQiDianAddressDetailList() ([]*FriendInfo, error) {
 			Timestamp2: proto.Uint64(0),
 		},
 	}
-	rspData, err := c.bigDataRequest(58, req)
+	rspData, err := c.bigDataRequest(0x519, req)
 	if err != nil {
 		return nil, errors.Wrap(err, "request error")
 	}
