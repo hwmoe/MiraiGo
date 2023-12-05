@@ -42,7 +42,8 @@ func (c *QQClient) getQiDianAddressDetailList() ([]*FriendInfo, error) {
 			Timestamp2: proto.Uint64(0),
 		},
 	}
-	//bigDataReq(1, reqBody, false, QidianPubAccountBigDataHandler.BIG_DATA_SUB_CMD, Long.valueOf(System.currentTimeMillis()));
+	data, _ := proto.Marshal(req)
+	log.Println(hex.EncodeToString(data))
 	rspData, err := c.bigDataRequest(0x519, req)
 	if err != nil {
 		return nil, errors.Wrap(err, "request error")
