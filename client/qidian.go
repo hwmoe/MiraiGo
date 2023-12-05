@@ -17,6 +17,8 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"strconv"
+	"strings"
 )
 
 func init() {
@@ -113,6 +115,10 @@ func (c *QQClient) bigDataRequest(subCmd uint32, req proto.Message) ([]byte, err
 		return nil, errors.New("please call conn key request method before")
 	}
 	data, _ := proto.Marshal(req)
+	version := strings.Join(strings.Split(c.version().SortVersionName, "."), "")
+	var versionNum int
+	versionNum, _ = strconv.Atoi(version)
+
 	head, _ := proto.Marshal(&msg.IMHead{
 		HeadType: proto.Uint32(4),
 		HttpconnHead: &msg.HttpConnHead{
@@ -120,7 +126,7 @@ func (c *QQClient) bigDataRequest(subCmd uint32, req proto.Message) ([]byte, err
 			Command:      proto.Uint32(1791),
 			SubCommand:   proto.Some(subCmd),
 			Seq:          proto.Uint32(uint32(c.nextHighwayApplySeq())),
-			Version:      proto.Uint32(500), // todo: short version convert
+			Version:      proto.Uint32(uint32(versionNum)), // todo: short version convert
 			Flag:         proto.Uint32(1),
 			CompressType: proto.Uint32(0),
 			ErrorCode:    proto.Uint32(0),
