@@ -28,8 +28,6 @@ func init() {
 
 // getQiDianAddressDetailList 外部联系人列表
 func (c *QQClient) getQiDianAddressDetailList() ([]*FriendInfo, error) {
-	log.Println(uint64(c.QiDian.MasterUin))
-	log.Println(uint64(c.Uin))
 	req := &cmd0x6ff.C519ReqBody{
 		SubCmd: proto.Uint32(33),
 		CrmCommonHead: &cmd0x6ff.C519CRMMsgHead{
@@ -39,8 +37,8 @@ func (c *QQClient) getQiDianAddressDetailList() ([]*FriendInfo, error) {
 			LaborUin:  proto.Uint64(uint64(c.Uin)),
 		},
 		GetAddressDetailListReqBody: &cmd0x6ff.GetAddressDetailListReqBody{
-			Timestamp: proto.Uint32(0),
-			//Timestamp2: proto.Uint64(0),
+			//Timestamp:  proto.Uint32(0),
+			Timestamp2: proto.Uint64(0),
 		},
 	}
 	data, _ := proto.Marshal(req)
@@ -139,6 +137,9 @@ func (c *QQClient) bigDataRequest(subCmd uint32, req proto.Message) ([]byte, err
 			Sig:  c.QiDian.bigDataReqSession.SigSession,
 		},
 	})
+
+	log.Println(hex.EncodeToString(head))
+
 	tea := binary.NewTeaCipher(c.QiDian.bigDataReqSession.SessionKey)
 	body := tea.Encrypt(data)
 	url := fmt.Sprintf("http://%v/cgi-bin/httpconn", c.QiDian.bigDataReqAddrs[0])
@@ -156,6 +157,7 @@ func (c *QQClient) bigDataRequest(subCmd uint32, req proto.Message) ([]byte, err
 	}
 	defer func() { _ = rsp.Body.Close() }()
 	rspBody, _ := io.ReadAll(rsp.Body)
+	log.Println(hex.EncodeToString(rspBody))
 	if len(rspBody) == 0 {
 		return nil, errors.Wrap(err, "request error")
 	}
