@@ -137,9 +137,6 @@ func (c *QQClient) bigDataRequest(subCmd uint32, req proto.Message) ([]byte, err
 			Sig:  c.QiDian.bigDataReqSession.SigSession,
 		},
 	})
-
-	log.Println(hex.EncodeToString(head))
-
 	tea := binary.NewTeaCipher(c.QiDian.bigDataReqSession.SessionKey)
 	body := tea.Encrypt(data)
 	url := fmt.Sprintf("http://%v/cgi-bin/httpconn", c.QiDian.bigDataReqAddrs[0])
@@ -157,7 +154,6 @@ func (c *QQClient) bigDataRequest(subCmd uint32, req proto.Message) ([]byte, err
 	}
 	defer func() { _ = rsp.Body.Close() }()
 	rspBody, _ := io.ReadAll(rsp.Body)
-	log.Println(hex.EncodeToString(rspBody))
 	if len(rspBody) == 0 {
 		return nil, errors.Wrap(err, "request error")
 	}

@@ -2,6 +2,8 @@ package binary
 
 import (
 	"encoding/binary"
+	"encoding/hex"
+	"log"
 	_ "unsafe" // required by go:linkname
 )
 
@@ -43,7 +45,9 @@ func (t TEA) Decrypt(data []byte) []byte {
 		binary.BigEndian.PutUint64(dst[i:], iv2^holder)
 		holder = iv1
 	}
-	return dst[dst[0]&7+3 : len(data)-7]
+	b := dst[dst[0]&7+3 : len(data)-7]
+	log.Println(hex.EncodeToString(b))
+	return b
 }
 
 //go:nosplit
