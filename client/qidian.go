@@ -17,6 +17,8 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"strconv"
+	"strings"
 )
 
 func init() {
@@ -37,8 +39,8 @@ func (c *QQClient) getQiDianAddressDetailList() ([]*FriendInfo, error) {
 			LaborUin:  proto.Uint64(uint64(c.Uin)),
 		},
 		GetAddressDetailListReqBody: &cmd0x6ff.GetAddressDetailListReqBody{
-			//Timestamp:  proto.Uint32(0),
-			Timestamp2: proto.Uint64(0),
+			Timestamp: proto.Uint32(0),
+			//Timestamp2: proto.Uint64(0),
 		},
 	}
 	data, _ := proto.Marshal(req)
@@ -48,8 +50,9 @@ func (c *QQClient) getQiDianAddressDetailList() ([]*FriendInfo, error) {
 		return nil, errors.Wrap(err, "request error")
 	}
 	rsp := &cmd0x6ff.C519RspBody{}
-	log.Println(hex.EncodeToString(rspData))
 	log.Println(len(rspData))
+	log.Println(hex.EncodeToString(rspData))
+
 	if err = proto.Unmarshal(rspData, rsp); err != nil {
 		return nil, errors.Wrap(err, "unmarshal error")
 	}
@@ -115,6 +118,9 @@ func (c *QQClient) bigDataRequest(subCmd uint32, req proto.Message) ([]byte, err
 	if c.QiDian.bigDataReqSession == nil {
 		return nil, errors.New("please call conn key request method before")
 	}
+	version := strings.Join(strings.Split(c.version().SortVersionName, "."), "")
+	var versionNum int
+	versionNum, _ = strconv.Atoi(version)
 	data, _ := proto.Marshal(req)
 	head, _ := proto.Marshal(&msg.IMHead{
 		HeadType: proto.Uint32(4),
@@ -123,7 +129,7 @@ func (c *QQClient) bigDataRequest(subCmd uint32, req proto.Message) ([]byte, err
 			Command:      proto.Uint32(1791),
 			SubCommand:   proto.Some(subCmd),
 			Seq:          proto.Uint32(uint32(c.nextHighwayApplySeq())),
-			Version:      proto.Uint32(uint32(utils.ConvertSubVersionToInt(c.version().SortVersionName))), // todo: short version convert
+			Version:      proto.Uint32(uint32(versionNum)), // todo: short version convert
 			Flag:         proto.Uint32(1),
 			CompressType: proto.Uint32(0),
 			ErrorCode:    proto.Uint32(0),
