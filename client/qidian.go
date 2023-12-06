@@ -26,6 +26,8 @@ func init() {
 
 // getQiDianAddressDetailList 外部联系人列表
 func (c *QQClient) getQiDianAddressDetailList() ([]*FriendInfo, error) {
+	log.Println(uint64(c.QiDian.MasterUin))
+	log.Println(uint64(c.Uin))
 	req := &cmd0x6ff.C519ReqBody{
 		SubCmd: proto.Uint32(33),
 		CrmCommonHead: &cmd0x6ff.C519CRMMsgHead{
