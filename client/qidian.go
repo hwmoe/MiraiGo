@@ -35,6 +35,10 @@ func (c *QQClient) getQiDianAddressDetailList() ([]*FriendInfo, error) {
 			VerNo:     proto.Uint32(uint32(utils.ConvertSubVersionToInt(c.version().SortVersionName))),
 			KfUin:     proto.Uint64(uint64(c.QiDian.MasterUin)),
 			LaborUin:  proto.Uint64(uint64(c.Uin)),
+			LoginSig: &cmd0x6ff.LoginSig{
+				Sig:  c.QiDian.bigDataReqSession.SessionKey,
+				Type: proto.Uint32(27),
+			},
 		},
 		GetAddressDetailListReqBody: &cmd0x6ff.GetAddressDetailListReqBody{
 			//Timestamp:  proto.Uint32(0),

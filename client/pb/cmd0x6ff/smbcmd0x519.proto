@@ -15,6 +15,12 @@ message C519CRMMsgHead {
   optional uint64 laborUin = 11;
   optional string laborName = 12;
   optional uint64 puin = 13;
+  optional LoginSig loginSig = 18;
+}
+
+message LoginSig {
+  optional uint32 Type = 1;
+  optional bytes Sig = 2;
 }
 
 message GetNavigationMenuReqBody {

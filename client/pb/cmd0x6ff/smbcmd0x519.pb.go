@@ -21,7 +21,13 @@ type C519CRMMsgHead struct {
 	LaborUin   proto.Option[uint64] `protobuf:"varint,11,opt"`
 	LaborName  proto.Option[string] `protobuf:"bytes,12,opt"`
 	Puin       proto.Option[uint64] `protobuf:"varint,13,opt"`
+	LoginSig   *LoginSig            `protobuf:"bytes,18,rep"`
 	_          [0]func()
+}
+
+type LoginSig struct {
+	Type proto.Option[uint32] `protobuf:"varint,1,opt"`
+	Sig  []byte               `protobuf:"bytes,2,opt"`
 }
 
 type GetNavigationMenuReqBody struct {
