@@ -54,6 +54,9 @@ func (c *QQClient) getQiDianAddressDetailList() ([]*FriendInfo, error) {
 	if err = proto.Unmarshal(rspData, rsp); err != nil {
 		return nil, errors.Wrap(err, "unmarshal error")
 	}
+	log.Println(rsp.SubCmd)
+	log.Println(rsp.GetAddressDetailListRspBody)
+
 	if rsp.GetAddressDetailListRspBody == nil {
 		return nil, errors.New("rsp body is nil")
 	}
