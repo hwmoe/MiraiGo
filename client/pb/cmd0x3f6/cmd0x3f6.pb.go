@@ -94,7 +94,7 @@ type QQFriendGroupInfo struct {
 }
 
 type QQFriendGroupInfoListBody struct {
-	QQFriendGroupInfo []QQFriendGroupInfo `protobuf:"bytes,1,rep"`
+	QQFriendGroupInfo []*QQFriendGroupInfo `protobuf:"bytes,1,rep"`
 }
 
 type GetQQFriendGroupListRspBody struct {
