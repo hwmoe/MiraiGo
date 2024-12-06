@@ -1,6 +1,7 @@
 package client
 
 import (
+	"encoding/hex"
 	"net"
 	"net/netip"
 	"runtime/debug"
@@ -388,6 +389,7 @@ func (c *QQClient) netLoop() {
 		}
 		errCount = 0
 		c.debug("rev pkt: %v seq: %v", resp.CommandName, resp.SequenceID)
+		c.debug("rev body: %v", hex.EncodeToString(resp.Body))
 		c.stat.PacketReceived.Add(1)
 		pkt := &network.Packet{
 			SequenceId:  uint16(resp.SequenceID),
@@ -413,6 +415,7 @@ func (c *QQClient) netLoop() {
 					if err != nil {
 						c.debug("decode pkt %v error: %+v", pkt.CommandName, err)
 					}
+					c.debug("rev body: %v", decoded)
 				}
 				if ok {
 					info.fun(decoded, err)
