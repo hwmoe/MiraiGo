@@ -5,12 +5,14 @@ message C3F6ReqBody {
   optional uint32 subCmd = 1;
   optional C3F6CRMMsgHead crmCommonHead = 2;
   optional QDUserLoginProcessCompleteReqBody subcmdLoginProcessCompleteReqBody = 42;
+  optional GetQQFriendGroupListReqBody GetQQFriendGroupListReq = 254;
 }
 
 message C3F6RspBody {
   optional uint32 subCmd = 1;
   optional C3F6CRMMsgHead crmCommonHead = 2;
   optional QDUserLoginProcessCompleteRspBody subcmdLoginProcessCompleteRspBody = 42;
+  optional GetQQFriendGroupListRspBody QQFriendGroupInfoListRspBody = 254;
 }
 
 message QDUserLoginProcessCompleteReqBody {
@@ -70,4 +72,23 @@ message C3F6CRMMsgHead {
   optional uint64 kfaccount = 12;
   optional string traceId = 13;
   optional uint32 appId = 14;
+}
+
+message GetQQFriendGroupListReqBody {
+
+}
+
+message QQFriendGroupInfo{
+  optional uint32  groupId = 1;
+  optional bytes   groupName = 2;
+  optional fixed32 createTime = 3;
+}
+
+message QQFriendGroupInfoListBody {
+  repeated QQFriendGroupInfo QQFriendGroupInfo = 1;
+}
+
+message GetQQFriendGroupListRspBody{
+  optional RetInfo ret = 1;
+  optional QQFriendGroupInfoListBody qqFriendGroupInfoListBody = 2;
 }

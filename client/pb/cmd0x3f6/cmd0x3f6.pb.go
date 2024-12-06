@@ -11,6 +11,7 @@ type C3F6ReqBody struct {
 	SubCmd                            proto.Option[uint32]               `protobuf:"varint,1,opt"`
 	CrmCommonHead                     *C3F6CRMMsgHead                    `protobuf:"bytes,2,opt"`
 	SubcmdLoginProcessCompleteReqBody *QDUserLoginProcessCompleteReqBody `protobuf:"bytes,42,opt"`
+	GetQQFriendGroupListReqBody       *GetQQFriendGroupListReqBody       `protobuf:"bytes,254,opt"`
 	_                                 [0]func()
 }
 
@@ -18,6 +19,7 @@ type C3F6RspBody struct {
 	SubCmd                            proto.Option[uint32]               `protobuf:"varint,1,opt"`
 	CrmCommonHead                     *C3F6CRMMsgHead                    `protobuf:"bytes,2,opt"`
 	SubcmdLoginProcessCompleteRspBody *QDUserLoginProcessCompleteRspBody `protobuf:"bytes,42,opt"`
+	GetQQFriendGroupListRspBody       *GetQQFriendGroupListRspBody       `protobuf:"bytes,254,opt"`
 	_                                 [0]func()
 }
 
@@ -80,4 +82,22 @@ type C3F6CRMMsgHead struct {
 	TraceId    proto.Option[string] `protobuf:"bytes,13,opt"`
 	AppId      proto.Option[uint32] `protobuf:"varint,14,opt"`
 	_          [0]func()
+}
+
+type GetQQFriendGroupListReqBody struct {
+}
+
+type QQFriendGroupInfo struct {
+	GroupId    proto.Option[uint32] `protobuf:"varint,1,opt"`
+	GroupName  proto.Option[string] `protobuf:"bytes,2,opt"`
+	CreateTime proto.Option[uint32] `protobuf:"fixed32,3,opt"`
+}
+
+type QQFriendGroupInfoListBody struct {
+	QQFriendGroupInfo []QQFriendGroupInfo `protobuf:"bytes,1,rep"`
+}
+
+type GetQQFriendGroupListRspBody struct {
+	Ret                   *RetInfo                   `protobuf:"bytes,1,opt"`
+	QQFriendGroupInfoList *QQFriendGroupInfoListBody `protobuf:"bytes,2,opt"`
 }
