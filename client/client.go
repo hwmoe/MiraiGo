@@ -479,8 +479,10 @@ func (c *QQClient) ReloadFriendList() error {
 // 当使用企点QQ时: 请求外部联系人列表
 func (c *QQClient) GetFriendList() (*FriendListResponse, error) {
 	if c.version().Protocol == auth.QiDian {
+		c.logger.Error("进入QD获取好友")
 		rsp, err := c.getQiDianAddressDetailList()
 		if err != nil {
+			c.logger.Error("QD获取好友失败")
 			return nil, err
 		}
 		return &FriendListResponse{TotalCount: int32(len(rsp)), List: rsp}, nil
