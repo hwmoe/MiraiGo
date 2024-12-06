@@ -707,7 +707,7 @@ func (c *QQClient) buildFriendGroupListRequestPacket(friendStartIndex, friendLis
 		GroupCount:      byte(groupListCount),
 		IfGetMSFGroup:   0,
 		IfShowTermType:  1,
-		Version:         27,
+		Version:         9, //27
 		UinList:         nil,
 		AppType:         0,
 		IfGetDOVId:      0,
