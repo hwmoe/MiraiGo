@@ -4,7 +4,6 @@ package client
 
 import (
 	"bytes"
-	"encoding/hex"
 	"fmt"
 	"github.com/hwmoe/MiraiGo/binary"
 	"github.com/hwmoe/MiraiGo/client/internal/network"
@@ -29,7 +28,6 @@ func init() {
 
 // getQiDianAddressDetailList 外部联系人列表
 func (c *QQClient) getQiDianAddressDetailList() ([]*FriendInfo, error) {
-	c.logger.Error("进入QD获取好友")
 	req := &cmd0x6ff.C519ReqBody{
 		SubCmd: proto.Uint32(33),
 		CrmCommonHead: &cmd0x6ff.C519CRMMsgHead{
@@ -47,15 +45,15 @@ func (c *QQClient) getQiDianAddressDetailList() ([]*FriendInfo, error) {
 			Timestamp2: proto.Uint64(0),
 		},
 	}
-	data, _ := proto.Marshal(req)
-	log.Println(hex.EncodeToString(data))
+	//data, _ := proto.Marshal(req)
+	//log.Println(hex.EncodeToString(data))
 	rspData, err := c.bigDataRequest(0x519, req)
 	if err != nil {
 		return nil, errors.Wrap(err, "request error")
 	}
 	rsp := &cmd0x6ff.C519RspBody{}
-	log.Println(len(rspData))
-	log.Println(hex.EncodeToString(rspData))
+	//log.Println(len(rspData))
+	//log.Println(hex.EncodeToString(rspData))
 
 	if err = proto.Unmarshal(rspData, rsp); err != nil {
 		return nil, errors.Wrap(err, "unmarshal error")
