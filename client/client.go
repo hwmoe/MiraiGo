@@ -479,7 +479,7 @@ func (c *QQClient) ReloadFriendList() error {
 // 当使用企点QQ时: 请求外部联系人列表
 func (c *QQClient) GetFriendList() (*FriendListResponse, error) {
 	if c.version().Protocol == auth.QiDian {
-		c.getQQFriendGroupList()
+		_, _ = c.sendAndWait(c.getQQFriendGroupList())
 		rsp, err := c.getQiDianAddressDetailList()
 		if err != nil {
 			return nil, err
